@@ -1,0 +1,167 @@
+body {
+    background-color: #d3d3d4;
+    margin: 0;
+}
+/* Header */
+.slider-title {
+    text-align: center;
+    padding: 20px 0;
+}
+header.container-fluid{
+    padding: 0;
+}
+/* Slider */
+.carousel{
+    height: 350px;
+    border-radius: 5px;
+}
+/*
+.carousel-inner .carousel-item{
+    height: 380px;
+    border-radius: 5px;
+} */
+.carousel-caption a{
+    text-decoration: none;
+    color: white;
+}
+.carousel-caption a:hover{
+    text-decoration: underline;
+    color:#5c5b5b;
+}
+.carousel-caption h5{
+    font-size: 2em;
+    background: #000000;
+    max-width: 100%;
+    padding: 1em;
+    opacity: 0.5;
+
+}
+/* Main */
+.main-content .last-publication{
+    margin: 10px 20px;
+}
+
+.main-content .blog-post{
+    margin-bottom: 20px;
+}
+
+.main-content .post-text{
+    background-color: #ffffff;
+    padding: 7px;
+}
+.main-content .post-text h3 a{
+    text-decoration: none;
+    color: #000000;
+}
+.main-content .post-text h3{
+    margin: 5px 0;
+}
+.main-content .post-text h3 a:hover{
+    text-decoration: underline;
+    color:#5c5b5b;
+}
+.main-content .post-text i{
+    margin: 0 10px 10px 0;
+}
+/* Sidebar */
+.topics ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.sidebar .topics ul li a{
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    padding: 15px 0 15px 0;
+    font-size: 1.2em;
+    border-bottom: 2px solid #e5c7ca;
+}
+.topics ul li a:hover{
+    color:#5c5b5b;
+}
+.sidebar .section{
+    margin-top: 60px;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 2px solid #d3d3d4;
+}
+/* Footer */
+footer{
+    margin-top: 25px;
+    background-color: #4f5050;
+    padding: 20px;
+}
+footer h3{
+    color: #ffffff;
+}
+footer .footer-section{
+    color: #ffffff;
+}
+.social ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.social ul a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.social ul a:hover{
+    text-decoration: underline;
+}
+/* Blog post */
+.comments-user{
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+/* Registration form */
+
+ .registration_form{
+    background-color: #ffffff;
+    margin-top: 60px;
+    padding: 20px;
+}
+ .reg-message{
+    /* border: 1px solid #ffc720; */
+     text-align: center;
+     color: #bb2d3b;
+     font-style: italic;
+ }
+/* Modal  authorization */
+.check-save-password {
+    margin-top: 20px;
+}
+.modal-registration a{
+    text-decoration: none;
+}
+.modal-registration a:hover{
+    text-decoration: underline;
+}
+
+/* User cab */
+.user-kab{
+    background-color: #ffffff;
+    margin-top: 65px;
+}
+.page-content{
+    margin-top: 60px;
+}
+
+.user-side{
+    margin-top: 15px;
+    background-color: #ffffff;
+    padding: 15px;
+    text-align: center;
+}
+#user_avatar{
+    max-width: 200px;
+    max-height: 200px;
+}
+/* Admin */
+
+.admin_page{
+    margin-top: 30px;
+}
