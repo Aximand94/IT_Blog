@@ -127,15 +127,14 @@ include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
                             <td>Новости из мира IT</td>
                             <td><button class="btn btn-danger">Удалить<button class="btn btn-primary">Редактировать</button></td>
                         </tr>
-                        <?php foreach($queryTopics as $row){
-                            echo "<tr>";
-                            echo "<td>{$row['topic_id']}</td>";
-                            echo "<td>{$row['topic_name']}</td>";
-                            echo "<td>{$row['topic_description']}</td>";
-                            echo "<td><a href='edit_topic.php?delete_id={$row['topic_id']}' class='btn btn-danger'>Удалить</a><a href='edit_topic.php?id={$row['topic_id']}' class='btn btn-primary'>Редактировать</a></td>";
-                            echo "</tr>";
-                        }
-                        ?>
+                        <?php foreach($queryTopics as $row):?>
+                            <tr>
+                                <td><?=$row['topic_id']?></td>
+                                <td><?=$row['topic_name']?></td>
+                                <td><?=$row['topic_description']?></td>
+                                <td><a href='edit_topic.php?delete_id=<?=$row['topic_id']?>' class='btn btn-danger'>Удалить</a><a href='edit_topic.php?id=<?=$row['topic_id']?>' class='btn btn-primary'>Редактировать</a></td>
+                            </tr>;
+                        <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>
