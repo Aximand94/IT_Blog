@@ -64,9 +64,6 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['authorization-submit'])){
     } else {
         $result = selectOne($table_name, ["login"=>$login]);
 
-        //printQuery($result);
-        //exit();
-
         if($result && password_verify($pass, $result['user_password'])){
             // авторизация прошла
             $_SESSION['user'] = $result['name'];

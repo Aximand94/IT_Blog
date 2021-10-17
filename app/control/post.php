@@ -1,13 +1,12 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/database/db_connected.php");
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/db_function/db_query_function.php");
-//include("../../path.php");
+include("path.php");
 $message = '';
 $table_name = 'post';
 $queryAllPost = selectAllOnTable('post');
 $queryAdmin = selectPostFromUser('post', 'users');
-//printQuery($queryAdmin);
-//exit();
+
 
 // создать пост
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
@@ -43,8 +42,6 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
                     'author'=>$author,
                     'status'=>$status
                 ];
-                //printQuery($post_parameter);
-                //exit();
                 $result = insertToTable($table_name, $post_parameter);
                 //header("Location: ../../admin_account/admin.php");
                 if($result){

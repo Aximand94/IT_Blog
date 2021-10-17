@@ -53,13 +53,9 @@ if($_SERVER['REQUEST_METHOD']==="GET" && isset($_GET['id'])){
 }
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['edit_topic'])){
-    //var_dump($_POST);
-    //exit();
     $topic_name = trim($_POST['topic_name']);
     $topic_description = trim($_POST['topic_description']);
     $id = $_POST['id'];
-    //var_dump();
-    //exit();
 
     if($topic_description == "" || $topic_name == ""){
         $errorMessage = "Заполните все поля";
