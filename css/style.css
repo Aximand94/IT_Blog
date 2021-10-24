@@ -165,3 +165,10 @@ footer .footer-section{
 .admin_page{
     margin-top: 30px;
 }
+
+.errorMessage{
+    /* border: 1px solid #ffc720; */
+    text-align: center;
+    color: #bb2d3b;
+    font-style: italic;
+}

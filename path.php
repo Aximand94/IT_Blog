@@ -2,3 +2,5 @@
 const DIR_FILES = "C:/xampp/htdocs/test_site";
 // points to your public
 define('FILE_PATH', realpath(dirname(__FILE__)));
+
+//var_dump(__FILE__);

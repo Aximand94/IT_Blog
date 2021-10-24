@@ -74,7 +74,7 @@ include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
                                 <th><?=$post['title']?></th>
                                 <th><?=$post['author']?></th>
                                 <th><?=$post['create_dtime']?></th>
-                                <td><a class="btn btn-danger" href="edit_post.php?delete_id=<?=$post['id']?>">Удалить</a>
+                                <td><a class="btn btn-danger" href="../app/control/post.php?delete_id=<?=$post['id']?>">Удалить</a>
                                     <a class="btn btn-primary" href="edit_post.php?id=<?=$post['id']?>">Редактировать</a>
                                     <a class="btn btn-secondary" href="#">Перейти к записи</a>
                                     <?php if($post['status']):?>
@@ -132,7 +132,8 @@ include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
                                 <td><?=$row['topic_id']?></td>
                                 <td><?=$row['topic_name']?></td>
                                 <td><?=$row['topic_description']?></td>
-                                <td><a href='edit_topic.php?delete_id=<?=$row['topic_id']?>' class='btn btn-danger'>Удалить</a><a href='edit_topic.php?id=<?=$row['topic_id']?>' class='btn btn-primary'>Редактировать</a></td>
+                                <td><a href='../app/control/topics.php?delete_id=<?=$row['topic_id']?>' class='btn btn-danger'>Удалить</a>
+                                    <a href='edit_topic.php?id=<?=$row['topic_id']?>' class='btn btn-primary'>Редактировать</a></td>
                             </tr>;
                         <?php endforeach;?>
                         </tbody>

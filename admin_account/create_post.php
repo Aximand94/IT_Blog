@@ -1,5 +1,6 @@
 <?php session_start();
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
+include_once($_SERVER['DOCUMENT_ROOT']."\app\control\post.php");
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">
@@ -13,12 +14,16 @@ include($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
+
 <!-- Header -->
 <?php include $_SERVER['DOCUMENT_ROOT']."/app/include/header.php" ?>
 <div class="container">
 
     <div class="create-post">
         <h2>Добавить запись</h2>
+        <div class="errorMessage">
+            <?php include $_SERVER['DOCUMENT_ROOT']."/app/help/info.php";?>
+        </div>
         <form action="../app/control/post.php" method="POST" enctype="multipart/form-data">
             <label>Заголовок записи:</label>
             <input type="text" class="form-control" name="post_title" placeholter="Заголовок поста">
