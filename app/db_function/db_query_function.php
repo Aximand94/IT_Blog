@@ -131,8 +131,9 @@ function updateTable($tableName, $id, $parameters){
 
         $i++;
     }
-    //$sql = "UPDATE $tableName SET $param WHERE id_user = $id";
-    $sql = "UPDATE $tableName SET $param WHERE topic_id = $id";
+    $sql = "UPDATE $tableName SET $param WHERE id = $id";
+    //printQuery($sql);
+    //exit();
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 }
@@ -159,7 +160,7 @@ function deleteInTable($tableName, $parameters){
 // выборка записей с автором
 function selectPostFromUser($tableOne, $tableTwo){
     global $pdo;
-    $sql = "SELECT * FROM $tableOne AS t1 JOIN $tableTwo AS t2 ON t1.id_user = (t2.id_user=1);";
+    $sql = "SELECT * FROM $tableOne AS t1 JOIN $tableTwo AS t2 ON t1.id = (t2.id=1);";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();

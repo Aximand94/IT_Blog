@@ -1,5 +1,6 @@
 <?php session_start();
-include_once($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">
@@ -16,25 +17,31 @@ include_once($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
 <!-- Header -->
 <?php include $_SERVER['DOCUMENT_ROOT']."/app/include/header.php" ?>
 <div class="container">
-
     <div class="create-post">
         <h2>Изменить запись</h2>
         <form action="../app/control/post.php" method="POST" enctype="multipart/form-data">
             <label>Заголовок записи:</label>
-            <input type="text" class="form-control" name="post_title" placeholter="Заголовок поста">
+            <input type="text" class="form-control" name="title" placeholter="Заголовок поста" value="<?=$title;?>">
             <label>Текст записи</label>
-            <textarea id="editor" class="form-control" name="post_content"></textarea>
+            <textarea id="editor" class="form-control" name="post_content" ><?=$content;?></textarea>
             <label>Изображение:</label>
             <input type="file" class="form-control" name="title_img">
+            <input type="hidden" name="id" value="<?=$id;?>">
             <label>Тема записи:</label>
             <select class="form-select" name="post_topic">
-                <option selected>Выбирите тему записи</option>
                 <?php foreach($queryTopics as $row):?>
-                    <option value="<?=$row['topic_name']?>"><?=$row['topic_name'];?></option>
+                    <option value="<?=$row['id']?>"><?=$row['topic_name'];?></option>
                 <?php endforeach; ?>
             </select>
+            <?php if(empty($status) && $status==0):?>
+                <input type="checkbox" class="form-check-input" name="status">
+                    <label>Опубликовать</label><br>
+            <?php else:?>
+                <input type="checkbox" class="form-check-input" checked name="status">
+                    <label>Опубликовать</label><br>
+            <?php endif;?>
             <input type="reset" class="btn btn-secondary">
-            <input type="submit" class="btn btn-primary" name="create_post" value="Обновить пост">
+            <input type="submit" class="btn btn-primary" name="edit_post" value="Редактировать пост">
         </form>
     </div>
 

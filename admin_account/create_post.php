@@ -35,7 +35,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."\app\control\post.php");
             <select class="form-select" name="post_topic">
                 <option selected>Выбирите тему записи</option>
                 <?php foreach($queryTopics as $row):?>
-                    <option value="<?=$row['topic_id']?>"><?=$row['topic_name'];?></option>
+                    <option value="<?=$row['id']?>"><?=$row['topic_name'];?></option>
                 <?php endforeach; ?>
             </select>
             <input type="checkbox" class="form-check-input" name="status"><label>Опубликовать</label><br>

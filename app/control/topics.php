@@ -44,9 +44,8 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_topic'])){
 // изменить категорию
 
 if($_SERVER['REQUEST_METHOD']==="GET" && isset($_GET['id'])){
-    $id = $_GET['id'];
-    $topic = selectOne($table_name, ['topic_id'=>$id]);
-    $id = $topic['topic_id'];
+    $topic = selectOne($table_name, ['id'=>$_GET['id']]);
+    $id = $topic['id'];
     $topic_name = $topic['topic_name'];
     $topic_description = $topic['topic_description'];
 
@@ -78,8 +77,7 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['edit_topic'])){
 // удалить категорию
 if($_SERVER['REQUEST_METHOD']=="GET" && isset($_GET['delete_id'])){
     $id = $_GET['delete_id'];
-    //$topic = selectOne($table_name, ['topic_id'=>$id]);
-    $result = deleteInTable($table_name, ['topic_id'=>$id]);
+    $result = deleteInTable($table_name, ['id'=>$id]);
     header("Location: ../../admin_account/admin.php");
 }
 
