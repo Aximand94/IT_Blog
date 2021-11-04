@@ -1,3 +1,4 @@
+<?php ?>
 <!-- Header -->
 <header class="container-fluid">
     <div class="navbar navbar-light navbar-expand-lg bg-light">
