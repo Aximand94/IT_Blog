@@ -34,7 +34,7 @@ function selectOneRow( $tableName,$rowName, $parameter=[]): array
 {
     // query
     global $pdo;
-    $sql = "SELECT $rowName FROM $tableName";
+    $sql = "SELECT id, $rowName FROM $tableName";
     if(!empty($parameter)){
         $i = 0;
         foreach($parameter as $key => $value){
@@ -165,6 +165,28 @@ function deleteInTable($tableName, $parameters){
 function selectPostFromUser($tableOne, $tableTwo){
     global $pdo;
     $sql = "SELECT * FROM $tableOne AS t1 JOIN $tableTwo AS t2 ON t1.id = (t2.id=1);";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+// топ-3 постов
+function topPosts($table_name){
+    global $pdo;
+    $sql = "SELECT id,title,author,MAX(rating) AS top_rating FROM $table_name GROUP BY rating ORDER BY `top_rating` DESC LIMIT 3";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+// поск по постам
+function searchInPost($table_name, $strSearch){
+    global $pdo;
+    $sql = "SELECT * FROM `post` WHERE title OR post_content LIKE '%$strSearch%'";
+    //printQuery($sql);
+    //exit();
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();

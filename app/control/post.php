@@ -10,6 +10,7 @@ $infoMessage = [];
 $table_name = 'post';
 $queryAllPost = selectAllOnTable('post');
 $queryAdmin = selectPostFromUser('post', 'users');
+$topPosts = topPosts($table_name);
 
 
 
@@ -40,6 +41,7 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
     $content = $_POST['post_content'];
     $user_id = '1';
     $author = 'admin';
+    $rating = 10+rand(1,100);
 
 
     if($title=='' || $topic=='' || $content==''){
@@ -60,7 +62,8 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
                 'post_content'=>$content,
                 'topic_id'=>$topic,
                 'author'=>$author,
-                'status'=>$status
+                'status'=>$status,
+                'rating'=>$rating
             ];
             $result = insertToTable($table_name, $post_parameter);
             if($result){
@@ -147,6 +150,6 @@ if($_SERVER['REQUEST_METHOD']==="GET" && isset($_GET['pub_id'])){
 if($_SERVER['REQUEST_METHOD']==="GET" && isset($_GET['delete_id'])){
     $id = $_GET['delete_id'];
     $result_del = deleteInTable($table_name, ['id'=>$id]);
-    header("Location: {$_SERVER['DOCUMENT_ROOT']}/admin_account/admin.php");
+    header("Location: ../../admin_account/admin.php");
 }
 

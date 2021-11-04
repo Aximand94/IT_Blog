@@ -1,7 +1,18 @@
 <?php session_start();
     include("path.php");
-    include_once("app/control/post.php");
     include_once("app/control/topics.php");
+
+if($_SERVER['REQUEST_METHOD']=="GET" && isset($_GET['search'])){
+    $strSearch = trim($_GET['strSearch']);
+    $resultSearch = searchInPost('post',$strSearch);
+}
+if(isset($_GET['topic_id'])){
+    $id = $_GET['topic_id'];
+    $postForTopic = selectAllOnTable('post', ['topic_id'=>$id]);
+}else{
+    $id='';
+}
+
 ?>
 <!doctype html>
 <html lang="ru RU">
@@ -50,56 +61,43 @@
                         Основных принципов можно выделить три: совместимость, простота и структурированность.</p>
                 </div>
             </div>
-            <?php foreach($queryAllPost as $row):?>
-                <?php if($row['status']==1):?>
+        <!-- Выводи посты по категориям -->
+        <?php if(isset($_GET['topic_id'])):?>
+            <?php foreach($postForTopic as $row_topic):?>
+                <?php if($row_topic['status']==1):?>
+                    <div class="blog-post row">
+                        <div class="post-img col-12 col-md-4">
+                            <img src="files/img/post/<?=$row_topic['title_img'];?>" class="img-thumbnail" alt="post-img" >
+                        </div>
+                        <div class="post-text col-12 col-md-8">
+                            <h3><a href="single_post.php?id=<?=$row_topic['id']?>"><?=mb_substr($row_topic['title'],0,100)."...";?></a></h3>
+                            <i class="topic">Тема</i>
+                            <i class="post-author">Автор: <?=$row_topic['author'];?></i>
+                            <i class="post-date">Дата публикации: <?=$row_topic['create_dtime'];?></i>
+                            <p class="preview-tex"><?=mb_substr($row_topic['post_content'],0,400)."...";?></p>
+                        </div>
+                    </div>
+                <?php endif;?>
+            <?php endforeach;?>
+        <!-- Вводим посты из поиска -->
+        <?php else:?>
+            <?php foreach($resultSearch as $rowSearch):?>
+                <?php if($rowSearch['status']==1):?>
                 <div class="blog-post row">
                     <div class="post-img col-12 col-md-4">
-                        <img src="files/img/post/<?=$row['title_img'];?>" class="img-thumbnail" alt="post-img">
+                        <img src="files/img/post/<?=$rowSearch['title_img'];?>" class="img-thumbnail" alt="post-img" >
                     </div>
                     <div class="post-text col-12 col-md-8">
-                        <h3><a href="single_post.php?id=<?=$row['id']?>"><?=mb_substr($row['title'],0,100)."...";?></a></h3>
+                        <h3><a href="single_post.php?id=<?=$$rowSearch['id']?>"><?=mb_substr($rowSearch['title'],0,100)."...";?></a></h3>
                         <i class="topic">Тема</i>
-                        <i class="post-author">Автор: <?=$row['author'];?></i>
-                        <i class="post-date">Дата публикации: <?=$row['create_dtime'];?></i>
-                        <p class="preview-tex"><?=mb_substr($row['post_content'],0,400)."...";?></p>
+                        <i class="post-author">Автор: <?=$rowSearch['author'];?></i>
+                        <i class="post-date">Дата публикации: <?=$rowSearch['create_dtime'];?></i>
+                        <p class="preview-tex"><?=mb_substr($rowSearch['post_content'],0,400)."...";?></p>
                     </div>
                 </div>
                 <?php endif;?>
             <?php endforeach;?>
-                <div class="blog-post row">
-                    <div class="post-img col-12 col-md-4">
-                        <img src="img/preview_img.jpg" class="img-thumbnail" alt="post-img" >
-                    </div>
-                    <div class="post-text col-12 col-md-8">
-                        <h3><a href="#">Рандомная статья из мира IT</a></h3>
-                        <i class="topic">Тематика</i>
-                        <i class="post-author">Автор</i>
-                        <i class="post-date">Дата публикации</i>
-                        <p class="preview-tex">
-                            Если вам приходилось хотя бы однажды размещать в верстке текст, набранный неумело,
-                            без знания особенностей работы с ним средствами программ макетирования, то вопрос “есть ли у набора правила?” покажется вам лишним.
-                            Или, наоборот, вам случалось набирать текст, утомляя глаза и пальцы, а потом видеть недовольные лица верстальщиков…
-                            Каким же требованиям должен подчиняться компьютерный набор, чтобы обеспечить эффективную подготовку публикации?
-                            Основных принципов можно выделить три: совместимость, простота и структурированность.</p>
-                    </div>
-                </div>
-                <div class="blog-post row">
-                    <div class="post-img col-12 col-md-4">
-                        <img src="img/preview_img.jpg" class="img-thumbnail" alt="post-img" >
-                    </div>
-                    <div class="post-text col-12 col-md-8">
-                        <h3><a href="#">Рандомная статья из мира IT</a></h3>
-                        <i class="">Тематика</i>
-                        <i class="post-author">Автор</i>
-                        <i class="post-date">Дата публикации</i>
-                        <p class="preview-tex">
-                            Если вам приходилось хотя бы однажды размещать в верстке текст, набранный неумело,
-                            без знания особенностей работы с ним средствами программ макетирования, то вопрос “есть ли у набора правила?” покажется вам лишним.
-                            Или, наоборот, вам случалось набирать текст, утомляя глаза и пальцы, а потом видеть недовольные лица верстальщиков…
-                            Каким же требованиям должен подчиняться компьютерный набор, чтобы обеспечить эффективную подготовку публикации?
-                            Основных принципов можно выделить три: совместимость, простота и структурированность.</p>
-                    </div>
-                </div>
+        <?php endif;?>
         </div>
     </div>
 </div>

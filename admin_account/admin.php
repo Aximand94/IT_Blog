@@ -131,20 +131,20 @@ include_once($_SERVER['DOCUMENT_ROOT'].'\app\control\users.php');
                     <h2>Управление категориями</h2>
                     <table class="table table-hover">
                         <thead class="table-primary">
-                        <tr>
-                            <th>Id</th>
-                            <th>Название</th>
-                            <th>Описание</th>
-                            <th>Управление</th>
-                        </tr>
+                            <tr>
+                                <th>Id</th>
+                                <th>Название</th>
+                                <th>Описание</th>
+                                <th>Управление</th>
+                            </tr>
                         </thead>
                         <tbody class="table-light">
-                        <tr>
-                            <td>0</td>
-                            <td>Новости</td>
-                            <td>Новости из мира IT</td>
-                            <td><button class="btn btn-danger">Удалить<button class="btn btn-primary">Редактировать</button></td>
-                        </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>Новости</td>
+                                <td>Новости из мира IT</td>
+                                <td><button class="btn btn-danger">Удалить<button class="btn btn-primary">Редактировать</button></td>
+                            </tr>
                         <?php foreach($queryTopics as $row):?>
                             <tr>
                                 <td><?=$row['id']?></td>
