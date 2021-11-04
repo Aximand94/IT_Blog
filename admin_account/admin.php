@@ -1,6 +1,7 @@
 <?php //session_start();
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'\app\control\users.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">
@@ -92,20 +93,37 @@ include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
                     <h2>Управление пользователями</h2>
                     <table class="table table-hover">
                         <thead class="table-primary">
-                        <th>Id</th>
-                        <th>Логин</th>
-                        <th>Имя</th>
-                        <th>Email</th>
-                        <th>Роль</th>
-                        <th>Управление</th>
+                            <tr>
+                                <th>Id</th>
+                                <th>Логин</th>
+                                <th>Имя</th>
+                                <th>Email</th>
+                                <th>Роль</th>
+                                <th>Управление</th>
+                            </tr>
                         </thead>
                         <tbody class="table-light">
-                        <td>1</td>
-                        <td>2</td>
-                        <td>Admin</td>
-                        <td>admin123@mail.ru</td>
-                        <td>admin</td>
-                        <td><button class="btn btn-danger">Удалить<button class="btn btn-primary">Редактировать</button></td>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>Admin</td>
+                                <td>admin123@mail.ru</td>
+                                <td>admin</td>
+                                <td><a class="btn btn-danger" href="">Удалить</a><a class="btn btn-primary"  href="">Редактировать</a></td>
+                            </tr>
+                            <?php foreach($usersList as $user):?>
+                                <tr>
+                                    <td><?=$user['id']?></td>
+                                    <td><?=$user['login']?></td>
+                                    <td><?=$user['name']?></td>
+                                    <td><?=$user['email']?></td>
+                                    <td><?=$user['user_status']?></td>
+                                    <td>
+                                        <a class="btn btn-danger" href="../app/control/users.php?delete_id=<?=$user['id']?>">Удалить</a>
+                                        <a class="btn btn-primary" href="edit_user.php?user_id=<?=$user['id']?>">Редактировать</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>

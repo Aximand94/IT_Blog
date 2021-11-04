@@ -1,5 +1,6 @@
 <?php session_start();
     include("path.php");
+    include_once("app/control/post.php");
 ?>
 <!doctype html>
 <html lang="ru RU">

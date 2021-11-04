@@ -15,9 +15,6 @@ $queryAdmin = selectPostFromUser('post', 'users');
 
 // создать пост
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
-    //printQuery($_POST);
-    //exit();
-
     if($_FILES && $_FILES['title_img']['error'] == UPLOAD_ERR_OK){
         //проверка типа файла
         $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
@@ -47,7 +44,6 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
 
     if($title=='' || $topic=='' || $content==''){
         $errorMessage[] = "Заголовок, тема и тело поста не могут быть пустыми!";
-        //print_r($errorMessage);
 
     } elseif(mb_strLen($title)<2){
         $errorMessage[] = "Заголовок должен быть минимум 2 символа в длину!";
@@ -90,14 +86,9 @@ if($_SERVER['REQUEST_METHOD']=='GET' && isset($_GET['id'])){
     $title = $post["title"];
     $content = $post["post_content"];
     $status = $post['status'];
-    //$topic_id = $post['topic_id'];
 }
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['edit_post'])){
-
-    //printQuery($_POST);
-    //exit();
-
     if($_FILES && $_FILES['title_img']['error'] == UPLOAD_ERR_OK){
         //проверка типа файла
         $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
@@ -122,13 +113,9 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['edit_post'])){
     $topic = $_POST['post_topic'];
     $status = isset($_POST['status']) ? 1 : 0;
     $content = $_POST['post_content'];
-    //$user_id = '1';
-    //$author = 'admin';
-
 
     if($title=='' || $content==''){
         $errorMessage[] = "Заголовок  и тело поста не могут быть пустыми!";
-        //print_r($errorMessage);
 
     } elseif(mb_strLen($title)<2){
         $errorMessage[] = "Заголовок должен быть минимум 2 символа в длину!";

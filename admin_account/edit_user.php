@@ -1,5 +1,5 @@
-
-<?php session_start();
+<?php //session_start();
+include($_SERVER['DOCUMENT_ROOT'].'\app\control\users.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">
@@ -14,29 +14,39 @@
 </head>
 <body>
 <!-- Header -->
-<?php include $_SERVER['DOCUMENT_ROOT'] ."/app/include/header.php" ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/app/include/header.php" ?>
 <div class="container">
-    <h2>Создать пользователя</h2>
+    <h2 style="text-align: center">Изменить данные пользователя</h2>
     <form action="../app/control/users.php" method="POST">
-        <label>Введите логин:</label>
-        <input type="text"     class="form-control" name="user_login">
-        <label>Введите имя:</label>
-        <input type="text"     class="form-control" name="user_name">
-        <label>Введите пароль:</label>
+        <input type="hidden" name="user_id" value="<?=$id;?>">
+        <label>Логин:</label>
+        <input type="text" class="form-control" name="login" value="<?=$login;?>">
+        <label>Изменить имя пользователя:</label>
+        <input type="text" class="form-control" name="name" value="<?=$name;?>">
+        <label>Создать новый пароль пользователя:</label>
         <input type="password" class="form-control" name="user_password">
-        <label>Повторите пароль:</label>
+        <label>Повторите новый пароль:</label>
         <input type="password" class="form-control" name="confirm_password">
-        <label>Введите email:</label>
-        <input type="email"    class="form-control" name="user_email">
+        <label>Изменить E-mail пользователя:</label>
+        <input type="email" class="form-control" name="email" value="<?=$email;?>">
         <label>Тип учётной записи:</label>
         <select class="form-select" name="user_status">
-            <option selected>Выберете уровень привелегий</option>
-            <option value="admin">Admin</option>
-            <option value="moderator">Moderator</option>
-            <option value="user">User</option>
+            <?php if($status=='admin'):?>
+                <option value="admin" selected>Admin</option>
+                <option value="moderator">Moderator</option>
+                <option value="user">User</option>
+            <?php elseif($status=='moderator'):?>
+                <option value="admin">Admin</option>
+                <option value="moderator" selected>Moderator</option>
+                <option value="user">User</option>
+            <?php else:?>
+                <option value="admin">Admin</option>
+                <option value="moderator">Moderator</option>
+                <option value="user" selected>User</option>
+            <?php endif;?>
         </select>
         <input type="reset" class="btn btn-secondary">
-        <input type="submit" class="btn btn-primary" name="create_user" value="Создать">
+        <input type="submit" class="btn btn-primary" name="edit_user" value="Изменить">
     </form>
 </div>
 <!-- Footer -->

@@ -42,21 +42,17 @@
                         <input type="text"     class="form-control" name="user_login">
                         <label>Введите имя:</label>
                         <input type="text"     class="form-control" name="user_name">
-                        <label>Введите возраст</label>
-                        <input type="number" class="form-control" name="user_age" min="0">
                         <label>Введите пароль:</label>
                         <input type="password" class="form-control" name="user_password">
-                        <label>Потвердите пароль:</label>
+                        <label>Повторите пароль:</label>
                         <input type="password" class="form-control" name="confirm_password">
                         <label>Введите email:</label>
                         <input type="email"    class="form-control" name="user_email">
-                        <label>Загрузите свой аватар:</label>
-                        <input type="file" class="form-control" name="user_avatar">
                         <br>
                         <input type="reset"    class="btn btn-secondary">
-                        <input type="submit"   class="btn btn-primary" value="Зарегистрироваться" name="register-submit">
+                        <input type="submit"   class="btn btn-primary" value="Зарегистрироваться" name="registration">
                     </form>
-                </div> <!-- -->
+                </div>
             </div>
         </div>
     </div>

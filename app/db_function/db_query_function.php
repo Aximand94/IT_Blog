@@ -81,7 +81,7 @@ function selectOne($tableName, $parameter=[]){
 }
 
 
-// форматирует извлечённые данные с бд
+// отладка запроса
 function printQuery($text){
     echo "<pre>";
         print_r($text);
@@ -107,6 +107,8 @@ function insertToTable($tableName, $parameters):bool{
         $i++;
     }
     $sql = "INSERT INTO $tableName ($coll) VALUES ($mask)";
+    //printQuery($sql);
+    //exit();
     $stmt = $pdo->prepare($sql);
     $result = $stmt->execute();
     if($result){
@@ -153,6 +155,8 @@ function deleteInTable($tableName, $parameters){
         $i++;
     }
     $sql = "DELETE FROM $tableName WHERE $param";
+    //printQuery($sql);
+    //exit();
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 }
