@@ -5,11 +5,14 @@
 
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $page_limit = 2;
+    $pageno = $page;
     $offset = ($page-1) * $page_limit;
     $total_page = ceil(countPublishPost('post') / $page_limit);
     $all_post = postsOnOnePage('post', $offset, $page_limit);
     //printQuery($total_page);
     //exit();
+
+
 ?>
 <!doctype html>
 <html lang="ru RU">
@@ -98,13 +101,10 @@
                         <a class="page-link" href="index.php?page=<?=$page=1;?>" tabindex="-1" aria-disabled="true">First page</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="index.php?page=<?=$page-1?>" tabindex="-1" aria-disabled="true">Previous</a>
+                        <a class="page-link" href="<?php ($page<=1)?'#':'index.php?page='.$page-1?>" tabindex="-1" aria-disabled="true">Previous</a>
                     </li>
-                    <?php if($page!=1):?>
-                        <li class="page-item"><a class="page-link" href="index.php?page=<?=$page-1?>"><?=$page-1?></a></li>
-                    <?php endif;?>
 
-                    <?php for($p = 0;$p<=$page_limit;$p++):?>
+                    <?php for($p = 0;$p<$total_page;$p++):?>
                         <li class="page-item"><a class="page-link" href="index.php?page=<?=$p+1?>"><?=$p+1?></a>
                     <?php endfor;?>
 
