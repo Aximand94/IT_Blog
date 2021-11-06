@@ -2,6 +2,14 @@
     include("path.php");
     include_once("app/control/post.php");
     include_once("app/control/topics.php");
+
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $page_limit = 2;
+    $offset = ($page-1) * $page_limit;
+    $total_page = ceil(countPublishPost('post') / $page_limit);
+    $all_post = postsOnOnePage('post', $offset, $page_limit);
+    //printQuery($total_page);
+    //exit();
 ?>
 <!doctype html>
 <html lang="ru RU">
@@ -50,7 +58,7 @@
                         Основных принципов можно выделить три: совместимость, простота и структурированность.</p>
                 </div>
             </div>
-            <?php foreach($queryAllPost as $row):?>
+            <?php foreach($all_post as $row):?>
                 <?php if($row['status']==1):?>
                 <div class="blog-post row">
                     <div class="post-img col-12 col-md-4">
@@ -83,23 +91,32 @@
                             Основных принципов можно выделить три: совместимость, простота и структурированность.</p>
                     </div>
                 </div>
-                <div class="blog-post row">
-                    <div class="post-img col-12 col-md-4">
-                        <img src="img/preview_img.jpg" class="img-thumbnail" alt="post-img" >
-                    </div>
-                    <div class="post-text col-12 col-md-8">
-                        <h3><a href="#">Рандомная статья из мира IT</a></h3>
-                        <i class="">Тематика</i>
-                        <i class="post-author">Автор</i>
-                        <i class="post-date">Дата публикации</i>
-                        <p class="preview-tex">
-                            Если вам приходилось хотя бы однажды размещать в верстке текст, набранный неумело,
-                            без знания особенностей работы с ним средствами программ макетирования, то вопрос “есть ли у набора правила?” покажется вам лишним.
-                            Или, наоборот, вам случалось набирать текст, утомляя глаза и пальцы, а потом видеть недовольные лица верстальщиков…
-                            Каким же требованиям должен подчиняться компьютерный набор, чтобы обеспечить эффективную подготовку публикации?
-                            Основных принципов можно выделить три: совместимость, простота и структурированность.</p>
-                    </div>
-                </div>
+            <!-- pagination -->
+            <nav aria-label="..." class="row col-12">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?page=<?=$page=1;?>" tabindex="-1" aria-disabled="true">First page</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?page=<?=$page-1?>" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <?php if($page!=1):?>
+                        <li class="page-item"><a class="page-link" href="index.php?page=<?=$page-1?>"><?=$page-1?></a></li>
+                    <?php endif;?>
+
+                    <?php for($p = 0;$p<=$page_limit;$p++):?>
+                        <li class="page-item"><a class="page-link" href="index.php?page=<?=$p+1?>"><?=$p+1?></a>
+                    <?php endfor;?>
+
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?page=<?=$page+1?>">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?page=<?=$total_page?>" tabindex="-1" aria-disabled="true">Last page</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- pagination end -->
         </div>
     </div>
 </div>

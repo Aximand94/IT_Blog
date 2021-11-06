@@ -192,3 +192,23 @@ function searchInPost($table_name, $strSearch){
     $result = $stmt->fetchAll();
     return $result;
 }
+
+// выборка постов на однуцу
+function postsOnOnePage($table_name, $offset, $page_limit){
+    global $pdo;
+    $sql = "SELECT * FROM post WHERE status=1 LIMIT $offset, $page_limit";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+// общее кол-во опубликованных постов
+function countPublishPost($table_name){
+    global $pdo;
+    $sql = "SELECT COUNT(*) FROM `post` WHERE status=1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchColumn();
+    return $result;
+}
