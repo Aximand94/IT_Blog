@@ -1,7 +1,14 @@
-<?php //session_start();
+<?php
+session_start();
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'\app\control\users.php');
+
+
+if($_SESSION['user']['user_status']!='admin'){
+    header("Location: ../index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">

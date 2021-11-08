@@ -1,11 +1,12 @@
 <?php
+if(session_id() == '') {
+    session_start();
+}
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/db_function/db_query_function.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/app/database/db_connected.php");
 
-$isUserSubmit = false;
 $table_name = "users";
 $usersList = selectAllOnTable($table_name);
-
 
 // регистрация
 if($_SERVER['REQUEST_METHOD']=="POST" && (isset($_POST['registration']) || isset($_POST['create_user']))){
@@ -40,8 +41,19 @@ if($_SERVER['REQUEST_METHOD']=="POST" && (isset($_POST['registration']) || isset
                 "user_status"=>$status
             ];
             $result = insertToTable($table_name, $user_parameter);
-            isset($_POST['create_user']) ? header("Location: ../../admin_account/admin.php"):
-                                           header("Location: ".$_SERVER['DOCUMENT_ROOT']."/single_1.php");
+            if($result){
+                $user_res = selectOne($table_name, ['login'=>$login]);
+                if(!isset($_SESSION['user'])){
+                    $_SESSION['user']=[
+                        'id'=>$user_res['id'],
+                        'name'=>$user_res['name'],
+                        'user_status'=> $user_res['user_status']
+                    ];
+                }
+                header("Location: ../../index.php");
+            }
+
+
         }
     }
 }
@@ -58,14 +70,23 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['authorization-submit'])){
         $result = selectOne($table_name, ["login"=>$login]);
 
         if($result && password_verify($pass, $result['user_password'])){
-            // авторизация прошла
-            $_SESSION['user'] = $result['name'];
-            header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
+            $_SESSION['user']=[
+                'id'=>$result['id'],
+                'name'=>$result['name'],
+                'user_status'=>$result['user_status']
+            ];
+            header("Location: ../../index.php");
         } else {
             echo "Логин либо пароль не верны!";
         }
 
     }
+}
+// выход из аккаунта
+if($_SERVER['REQUEST_METHOD']=="GET" && isset($_GET['logout'])){
+    unset($_SESSION['user']);
+    session_destroy();
+    header("Location: ../../index.php");
 }
 
 // редактировать данные пользователя через админку

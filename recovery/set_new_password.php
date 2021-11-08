@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    include($_SERVER['DOCUMENT_ROOT']."/app/control/users.php");
+session_start();
+include($_SERVER['DOCUMENT_ROOT'] . "/app/control/users.php");
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">
@@ -11,47 +11,40 @@
     <title>My site</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 <!-- Header -->
-<?php include $_SERVER['DOCUMENT_ROOT']."/app/include/header.php";?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/app/include/header.php";?>
 <!-- side -->
 <div class="container">
     <div class="content row">
         <div class="sidebar col-md-3 col-12">
             <!-- window user -->
             <?php if(isset($_SESSION['user'])){
-                include($_SERVER['DOCUMENT_ROOT']."/app/include/user_side/authoriz_user_side.php");
+                include($_SERVER['DOCUMENT_ROOT'] . "/app/include/user_side/authoriz_user_side.php");
             } else {
-                include($_SERVER['DOCUMENT_ROOT']."/app/include/user_side/user_side.php");
+                include($_SERVER['DOCUMENT_ROOT'] . "/app/include/user_side/user_side.php");
             }?>
 
             <!-- Aside -->
-            <?php include($_SERVER['DOCUMENT_ROOT']."/app/include/sidebar.php");?>
+            <?php include($_SERVER['DOCUMENT_ROOT'] . "/app/include/sidebar.php");?>
         </div>
-            <!-- Main -->
+        <!-- Main -->
         <div class="main-content col-md-9 col-12">
             <div class="registration_form">
                 <!-- test form -->
                 <div class="row justify-content-center">
-                    <h2>Зарегистрироваться</h2>
-                    <i class="">Уже есть акаунт? Войдите используя форму слева!</i>
-                    <span class="reg-message">Сообщение об ошибке</span>
-                    <form action="app/control/users.php" method="POST" enctype="multipart/form-data">
-                        <label>Введите логин:</label>
-                        <input type="text"     class="form-control" name="user_login">
-                        <label>Введите имя:</label>
-                        <input type="text"     class="form-control" name="user_name">
-                        <label>Введите пароль:</label>
+                    <h2>Восстановление учётной записи</h2>
+                    <h3>Шаг 2: Введите новый пароль</h3>
+                    <form action="../app/control/users.php" method="POST">
+                        <label>Новый пароль:</label>
                         <input type="password" class="form-control" name="user_password">
                         <label>Повторите пароль:</label>
                         <input type="password" class="form-control" name="confirm_password">
-                        <label>Введите email:</label>
-                        <input type="email"    class="form-control" name="user_email">
                         <br>
                         <input type="reset"    class="btn btn-secondary">
-                        <input type="submit"   class="btn btn-primary" value="Зарегистрироваться" name="registration">
+                        <input type="submit"   class="btn btn-primary" value="Восстановить" name="set_new_password">
                     </form>
                 </div>
             </div>
@@ -59,7 +52,7 @@
     </div>
 </div>
 <!-- Footer -->
-<?php include $_SERVER['DOCUMENT_ROOT']."/app/include/footer.php";?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/app/include/footer.php";?>
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 <!-- Option 2: Separate Popper and Bootstrap JS -->

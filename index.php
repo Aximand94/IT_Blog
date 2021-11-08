@@ -5,14 +5,9 @@
 
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $page_limit = 2;
-    $pageno = $page;
     $offset = ($page-1) * $page_limit;
     $total_page = ceil(countPublishPost('post') / $page_limit);
     $all_post = postsOnOnePage('post', $offset, $page_limit);
-    //printQuery($total_page);
-    //exit();
-
-
 ?>
 <!doctype html>
 <html lang="ru RU">
