@@ -1,6 +1,11 @@
 <?php session_start();
+        ob_start();
       include_once("app/control/post.php");
+      include_once("app/control/comments.php");
       $post = selectOne('post', ['id'=>$_GET['id']]);
+      $comments = selectAllOnTable('comment',['post_id'=>$post['id']]);
+      //printQuery($comments);
+      //exit();
 ?>
 <!DOCTYPE html>
 <html lang="ru RU">
@@ -42,9 +47,7 @@
                 <div class="row post-text col-12">
                     <?=$post['post_content'];?>
                 </div>
-                <div class="row comments-user">
-                    <i>Тут коментарии пользователей</i>
-                </div>
+                <?php include($_SERVER['DOCUMENT_ROOT'] ."/app/include/comments.php");?>
             </div>
         </div>
     </div>

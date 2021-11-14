@@ -1,4 +1,7 @@
 <?php
+if(session_id() == '') {
+    session_start();
+}
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/database/db_connected.php");
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/db_function/db_query_function.php");
 $table_name = "topics";
@@ -48,7 +51,6 @@ if($_SERVER['REQUEST_METHOD']==="GET" && isset($_GET['id'])){
     $id = $topic['id'];
     $topic_name = $topic['topic_name'];
     $topic_description = $topic['topic_description'];
-
 }
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['edit_topic'])){

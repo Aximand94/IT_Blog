@@ -31,10 +31,10 @@
         <div class="user-kab col-md-9 col-12">
             <div class="user-content">
                 <h2>Кабинет пользователя</h2>
-                <p>Приветcтвую вас, <i><?= $_SESSION['user'];?></i>!</p>
+                <p>Приветcтвую вас, <i><?= $_SESSION['user']['name'];?></i>!</p>
                 <br>
                 <p>Тут различная тнформация о пользователе.</p>
-                <p>Если хотите выйти нажмите <a href="#">сюда</a></p>
+                <p>Если хотите выйти нажмите <a href="../app/control/users.php">сюда</a></p>
             </div>
         </div>
     </div>

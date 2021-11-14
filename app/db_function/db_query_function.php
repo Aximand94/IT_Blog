@@ -211,3 +211,15 @@ function countPublishPost($table_name){
     $result = $stmt->fetchColumn();
     return $result;
 }
+
+// коментарии к посту
+/*
+function queryCommentForPost($table_one, $table_two,$post_id){
+    global $pdo;
+    $sql = "SELECT * FROM $table_one AS t1 JOIN $table_two AS t2 ON t1.id = t2.$post_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+*/

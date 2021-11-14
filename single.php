@@ -50,9 +50,7 @@
                         Например, в России данная частота заблокирована, что довольно странно.</p>
                     <p>Давайте это фиксить.</p>
                 </div>
-                <div class="row comments-user">
-                    <i>Тут коментарии пользователей</i>
-                </div>
+                <?php include($_SERVER['DOCUMENT_ROOT'] ."/app/include/comments.php");?>
             </div>
         </div>
     </div>

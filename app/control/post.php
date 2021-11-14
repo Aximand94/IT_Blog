@@ -1,4 +1,7 @@
 <?php
+if(session_id() == '') {
+    session_start();
+}
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/database/db_connected.php");
 include_once($_SERVER['DOCUMENT_ROOT'] ."/app/db_function/db_query_function.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/path.php");
@@ -11,7 +14,6 @@ $table_name = 'post';
 $queryAllPost = selectAllOnTable('post');
 $queryAdmin = selectPostFromUser('post', 'users');
 $topPosts = topPosts($table_name);
-
 
 
 // создать пост
@@ -39,8 +41,8 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['create_post'])){
     $topic = $_POST['post_topic'];
     $status = isset($_POST['status']) ? 1 : 0;
     $content = $_POST['post_content'];
-    $user_id = '1';
-    $author = 'admin';
+    $user_id = $_SESSION['user']['id'];
+    $author = $_SESSION['user']['name'];
     $rating = 10+rand(1,100);
 
 
