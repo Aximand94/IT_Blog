@@ -159,3 +159,21 @@ footer .footer-section{
     color: #bb2d3b;
     font-style: italic;
 }
+
+/* comment */
+.all-comments{
+    padding-top: 3rem;
+}
+.all-comments h3{
+    margin-top: 2rem;
+}
+.all-comments .one-comment{
+    padding: 1rem;
+    border: 1px solid #38A5EE;
+    border-radius: 6px;
+}
+.all-comments .one-comment span{
+    display: inline-block;
+    margin: 0.3rem 1rem 1rem 0;
+    font-weight: 500;
+}

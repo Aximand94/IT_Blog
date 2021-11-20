@@ -8,8 +8,8 @@ include($_SERVER['DOCUMENT_ROOT']."/app/control/comments.php");
         <?php if(count($comments)>0):?>
             <?php foreach($comments as $comment):?>
                 <div class="col-12 one-comment">
-                    <span><?=$comment['user_id']?></span>
-                    <span id="date"><?=$comment['create_dtime']?></span>
+                    <span><i class="far fa-user"></i><?=$comment['user_name']?></span>
+                    <span id="date"><i class="far fa-calendar-check"></i><?=$comment['create_dtime']?></span>
                     <div class="col-12 text">
                         <?=$comment['comment']?>
                     </div>
@@ -22,7 +22,7 @@ include($_SERVER['DOCUMENT_ROOT']."/app/control/comments.php");
 
  <!-- Добавить коментарий -->
     <h3>Оставить комментарий</h3>
-    <form action="" method="POST">
+    <form action="app/control/comments.php" method="POST">
         <inpu
         <div class="mb-3">
             <label for="comment" class="form-label">Коментарий</label>

@@ -3,6 +3,7 @@ session_start();
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\topics.php');
 include($_SERVER['DOCUMENT_ROOT'].'\app\control\post.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'\app\control\users.php');
+include_once ($_SERVER['DOCUMENT_ROOT'].'\app\control\comments.php');
 
 
 if($_SESSION['user']['user_status']!='admin'){
@@ -173,6 +174,7 @@ if($_SESSION['user']['user_status']!='admin'){
                             <th>ID поста</th>
                             <th>Коментарий</th>
                             <th>Автор</th>
+                            <th>Дата написания</th>
                             <th>Управление</th>
                         </tr>
                         </thead>
@@ -182,8 +184,20 @@ if($_SESSION['user']['user_status']!='admin'){
                             <td>1</td>
                             <td>Тут текст коментария</td>
                             <td>Hanuman</td>
+                            <td>В прошлом тысячилетии</td>
                             <td><button class="btn btn-danger">Удалить<button class="btn btn-primary">Редактировать</button></td>
                         </tr>
+                        <?php foreach($all_comments as $comment_row):?>
+                            <tr>
+                                <td><?=$comment_row['id']?></td>
+                                <td><a class="btn btn-primary" href="../single_post.php?id=<?=$comment_row['post_id']?>">Перейти к записи</a></td>
+                                <td><?=$comment_row['comment']?></td>
+                                <td><?=$comment_row['user_name']?></td>
+                                <td><?=$comment_row['create_dtime']?></td>
+                                <td><a class="btn btn-danger" href="../app/control/comments.php?del_id=<?=$comment_row['id']?>">Удалить</a>
+                                    <button class="btn btn-primary">Редактировать</button></td>
+                            </tr>
+                        <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>

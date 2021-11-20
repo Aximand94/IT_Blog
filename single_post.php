@@ -1,5 +1,5 @@
 <?php session_start();
-        ob_start();
+        //ob_start();
       include_once("app/control/post.php");
       include_once("app/control/comments.php");
       $post = selectOne('post', ['id'=>$_GET['id']]);
